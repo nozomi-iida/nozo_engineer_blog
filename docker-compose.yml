@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: docker/go/Dockerfile
+    tty: true
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./server:/server
+
+  db:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    env_file: server/.env
+    volumes:
+      - ./server/tmp/db/data:/var/lib/mysql
