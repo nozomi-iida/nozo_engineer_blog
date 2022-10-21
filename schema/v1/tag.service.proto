@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package nozo_engineer_blog.v1;
+
+import "article.proto";
+import "tag.proto";
+
+service TagService {
+  rpc GetTags(GetTagsReq) returns (GetTagsRes);
+  rpc GetTag(GetTagReq) returns (GetTagRes);
+}
+
+message GetTagsReq {}
+
+message GetTagsRes {
+  repeated v1.Tag tags = 1;
+}
+
+message GetTagReq {
+  int32 id = 1;
+}
+
+message GetTagRes {
+  v1.Tag tag = 1;
+}

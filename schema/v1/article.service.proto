@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package nozo_engineer_blog.v1;
+
+import "article.proto";
+import "tag.proto";
+
+service ArticleService {
+  rpc GetArticles(GetArticlesReq) returns (GetArticlesRes);
+  rpc GetArticle(GetArticleReq) returns (GetArticleRes);
+}
+
+message GetArticlesReq {}
+
+message GetArticlesRes {
+  repeated v1.Article articles = 1;
+}
+
+message GetArticleReq {
+  int32 id = 1;
+}
+
+message GetArticleRes {
+  v1.Article article = 1;
+}
