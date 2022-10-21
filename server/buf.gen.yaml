@@ -5,9 +5,9 @@ managed:
     default: "github.com/nozomi-iida/nozo_engineer_blog"
 plugins:
   - name: go
-    out: gen/proto
+    out: genproto
     opt: paths=source_relative
   - name: go-grpc 
-    out: gen/proto/go
+    out: genproto
     opt: paths=source_relative
 
