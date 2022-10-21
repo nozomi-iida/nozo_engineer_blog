@@ -1,0 +1,10 @@
+version: v1
+managed:
+  enabled: true
+plugins:
+  - name: js
+    out: src/genproto
+    opt: import_style=commonjs
+  - name: ts
+    out: src/genproto
+    opt: service=grpc-web

@@ -10,4 +10,3 @@ plugins:
   - name: go-grpc 
     out: genproto
     opt: paths=source_relative
-
