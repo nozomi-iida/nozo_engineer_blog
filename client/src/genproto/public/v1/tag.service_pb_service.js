@@ -8,7 +8,7 @@ var TagService = (function () {
   function TagService() {}
   TagService.serviceName = "public.v1.TagService";
   return TagService;
-}());
+})();
 
 TagService.GetTags = {
   methodName: "GetTags",
@@ -16,7 +16,7 @@ TagService.GetTags = {
   requestStream: false,
   responseStream: false,
   requestType: public_v1_tag_service_pb.GetTagsRequest,
-  responseType: public_v1_tag_service_pb.GetTagsResponse
+  responseType: public_v1_tag_service_pb.GetTagsResponse,
 };
 
 TagService.GetTag = {
@@ -25,7 +25,7 @@ TagService.GetTag = {
   requestStream: false,
   responseStream: false,
   requestType: public_v1_tag_service_pb.GetTagRequest,
-  responseType: public_v1_tag_service_pb.GetTagResponse
+  responseType: public_v1_tag_service_pb.GetTagResponse,
 };
 
 exports.TagService = TagService;
@@ -35,7 +35,11 @@ function TagServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-TagServiceClient.prototype.getTags = function getTags(requestMessage, metadata, callback) {
+TagServiceClient.prototype.getTags = function getTags(
+  requestMessage,
+  metadata,
+  callback
+) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
@@ -56,17 +60,21 @@ TagServiceClient.prototype.getTags = function getTags(requestMessage, metadata, 
           callback(null, response.message);
         }
       }
-    }
+    },
   });
   return {
     cancel: function () {
       callback = null;
       client.close();
-    }
+    },
   };
 };
 
-TagServiceClient.prototype.getTag = function getTag(requestMessage, metadata, callback) {
+TagServiceClient.prototype.getTag = function getTag(
+  requestMessage,
+  metadata,
+  callback
+) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
@@ -87,15 +95,14 @@ TagServiceClient.prototype.getTag = function getTag(requestMessage, metadata, ca
           callback(null, response.message);
         }
       }
-    }
+    },
   });
   return {
     cancel: function () {
       callback = null;
       client.close();
-    }
+    },
   };
 };
 
 exports.TagServiceClient = TagServiceClient;
-

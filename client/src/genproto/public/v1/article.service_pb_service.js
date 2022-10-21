@@ -8,7 +8,7 @@ var ArticleService = (function () {
   function ArticleService() {}
   ArticleService.serviceName = "public.v1.ArticleService";
   return ArticleService;
-}());
+})();
 
 ArticleService.GetArticles = {
   methodName: "GetArticles",
@@ -16,7 +16,7 @@ ArticleService.GetArticles = {
   requestStream: false,
   responseStream: false,
   requestType: public_v1_article_service_pb.GetArticlesRequest,
-  responseType: public_v1_article_service_pb.GetArticlesResponse
+  responseType: public_v1_article_service_pb.GetArticlesResponse,
 };
 
 ArticleService.GetArticle = {
@@ -25,7 +25,7 @@ ArticleService.GetArticle = {
   requestStream: false,
   responseStream: false,
   requestType: public_v1_article_service_pb.GetArticleRequest,
-  responseType: public_v1_article_service_pb.GetArticleResponse
+  responseType: public_v1_article_service_pb.GetArticleResponse,
 };
 
 exports.ArticleService = ArticleService;
@@ -35,7 +35,11 @@ function ArticleServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-ArticleServiceClient.prototype.getArticles = function getArticles(requestMessage, metadata, callback) {
+ArticleServiceClient.prototype.getArticles = function getArticles(
+  requestMessage,
+  metadata,
+  callback
+) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
@@ -56,17 +60,21 @@ ArticleServiceClient.prototype.getArticles = function getArticles(requestMessage
           callback(null, response.message);
         }
       }
-    }
+    },
   });
   return {
     cancel: function () {
       callback = null;
       client.close();
-    }
+    },
   };
 };
 
-ArticleServiceClient.prototype.getArticle = function getArticle(requestMessage, metadata, callback) {
+ArticleServiceClient.prototype.getArticle = function getArticle(
+  requestMessage,
+  metadata,
+  callback
+) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
@@ -87,15 +95,14 @@ ArticleServiceClient.prototype.getArticle = function getArticle(requestMessage, 
           callback(null, response.message);
         }
       }
-    }
+    },
   });
   return {
     cancel: function () {
       callback = null;
       client.close();
-    }
+    },
   };
 };
 
 exports.ArticleServiceClient = ArticleServiceClient;
-
