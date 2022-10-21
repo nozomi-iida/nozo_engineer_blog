@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package public.v1;
+
+import "public/v1/tag.proto";
+
+service TagService {
+  rpc GetTags(GetTagsRequest) returns (GetTagsResponse);
+  rpc GetTag(GetTagRequest) returns (GetTagResponse);
+}
+
+message GetTagsRequest {}
+
+message GetTagsResponse {
+  repeated v1.Tag tags = 1;
+}
+
+message GetTagRequest {
+  int32 id = 1;
+}
+
+message GetTagResponse {
+  v1.Tag tag = 1;
+}

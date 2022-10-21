@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: article.service.proto
+// source: public/v1/article.service.proto
 
-package nozo_engineer_blogv1
+package publicv1
 
 import (
 	context "context"
@@ -22,8 +22,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ArticleServiceClient interface {
-	GetArticles(ctx context.Context, in *GetArticlesReq, opts ...grpc.CallOption) (*GetArticlesRes, error)
-	GetArticle(ctx context.Context, in *GetArticleReq, opts ...grpc.CallOption) (*GetArticleRes, error)
+	GetArticles(ctx context.Context, in *GetArticlesRequest, opts ...grpc.CallOption) (*GetArticlesResponse, error)
+	GetArticle(ctx context.Context, in *GetArticleRequest, opts ...grpc.CallOption) (*GetArticleResponse, error)
 }
 
 type articleServiceClient struct {
@@ -34,18 +34,18 @@ func NewArticleServiceClient(cc grpc.ClientConnInterface) ArticleServiceClient {
 	return &articleServiceClient{cc}
 }
 
-func (c *articleServiceClient) GetArticles(ctx context.Context, in *GetArticlesReq, opts ...grpc.CallOption) (*GetArticlesRes, error) {
-	out := new(GetArticlesRes)
-	err := c.cc.Invoke(ctx, "/nozo_engineer_blog.v1.ArticleService/GetArticles", in, out, opts...)
+func (c *articleServiceClient) GetArticles(ctx context.Context, in *GetArticlesRequest, opts ...grpc.CallOption) (*GetArticlesResponse, error) {
+	out := new(GetArticlesResponse)
+	err := c.cc.Invoke(ctx, "/public.v1.ArticleService/GetArticles", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *articleServiceClient) GetArticle(ctx context.Context, in *GetArticleReq, opts ...grpc.CallOption) (*GetArticleRes, error) {
-	out := new(GetArticleRes)
-	err := c.cc.Invoke(ctx, "/nozo_engineer_blog.v1.ArticleService/GetArticle", in, out, opts...)
+func (c *articleServiceClient) GetArticle(ctx context.Context, in *GetArticleRequest, opts ...grpc.CallOption) (*GetArticleResponse, error) {
+	out := new(GetArticleResponse)
+	err := c.cc.Invoke(ctx, "/public.v1.ArticleService/GetArticle", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,8 +56,8 @@ func (c *articleServiceClient) GetArticle(ctx context.Context, in *GetArticleReq
 // All implementations must embed UnimplementedArticleServiceServer
 // for forward compatibility
 type ArticleServiceServer interface {
-	GetArticles(context.Context, *GetArticlesReq) (*GetArticlesRes, error)
-	GetArticle(context.Context, *GetArticleReq) (*GetArticleRes, error)
+	GetArticles(context.Context, *GetArticlesRequest) (*GetArticlesResponse, error)
+	GetArticle(context.Context, *GetArticleRequest) (*GetArticleResponse, error)
 	mustEmbedUnimplementedArticleServiceServer()
 }
 
@@ -65,10 +65,10 @@ type ArticleServiceServer interface {
 type UnimplementedArticleServiceServer struct {
 }
 
-func (UnimplementedArticleServiceServer) GetArticles(context.Context, *GetArticlesReq) (*GetArticlesRes, error) {
+func (UnimplementedArticleServiceServer) GetArticles(context.Context, *GetArticlesRequest) (*GetArticlesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetArticles not implemented")
 }
-func (UnimplementedArticleServiceServer) GetArticle(context.Context, *GetArticleReq) (*GetArticleRes, error) {
+func (UnimplementedArticleServiceServer) GetArticle(context.Context, *GetArticleRequest) (*GetArticleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetArticle not implemented")
 }
 func (UnimplementedArticleServiceServer) mustEmbedUnimplementedArticleServiceServer() {}
@@ -85,7 +85,7 @@ func RegisterArticleServiceServer(s grpc.ServiceRegistrar, srv ArticleServiceSer
 }
 
 func _ArticleService_GetArticles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetArticlesReq)
+	in := new(GetArticlesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -94,16 +94,16 @@ func _ArticleService_GetArticles_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nozo_engineer_blog.v1.ArticleService/GetArticles",
+		FullMethod: "/public.v1.ArticleService/GetArticles",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArticleServiceServer).GetArticles(ctx, req.(*GetArticlesReq))
+		return srv.(ArticleServiceServer).GetArticles(ctx, req.(*GetArticlesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ArticleService_GetArticle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetArticleReq)
+	in := new(GetArticleRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -112,10 +112,10 @@ func _ArticleService_GetArticle_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nozo_engineer_blog.v1.ArticleService/GetArticle",
+		FullMethod: "/public.v1.ArticleService/GetArticle",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArticleServiceServer).GetArticle(ctx, req.(*GetArticleReq))
+		return srv.(ArticleServiceServer).GetArticle(ctx, req.(*GetArticleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -124,7 +124,7 @@ func _ArticleService_GetArticle_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ArticleService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "nozo_engineer_blog.v1.ArticleService",
+	ServiceName: "public.v1.ArticleService",
 	HandlerType: (*ArticleServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -137,5 +137,5 @@ var ArticleService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "article.service.proto",
+	Metadata: "public/v1/article.service.proto",
 }

@@ -5,3 +5,5 @@ breaking:
 lint:
   use:
     - DEFAULT
+  except:
+    - FILE_LOWER_SNAKE_CASE

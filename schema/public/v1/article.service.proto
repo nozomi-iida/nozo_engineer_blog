@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package public.v1;
+
+import "public/v1/article.proto";
+
+
+service ArticleService {
+  rpc GetArticles(GetArticlesRequest) returns (GetArticlesResponse);
+  rpc GetArticle(GetArticleRequest) returns (GetArticleResponse);
+}
+
+message GetArticlesRequest {}
+
+message GetArticlesResponse {
+  repeated v1.Article articles = 1;
+}
+
+message GetArticleRequest {
+  int32 id = 1;
+}
+
+message GetArticleResponse {
+  v1.Article article = 1;
+}

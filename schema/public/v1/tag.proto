@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package nozo_engineer_blog.v1;
+package public.v1;
 
 import "google/protobuf/timestamp.proto";
 

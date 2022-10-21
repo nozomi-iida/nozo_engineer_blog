@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package nozo_engineer_blog.v1;
+package public.v1;
 
 import "google/protobuf/timestamp.proto";
-import "tag.proto";
+import "public/v1/tag.proto";
 
 message Article {
   int32 id = 1;
