@@ -3,7 +3,7 @@ syntax = "proto3";
 package nozo_engineer_blog.v1;
 
 import "google/protobuf/timestamp.proto";
-import "v1/tag.proto";
+import "tag.proto";
 
 message Article {
   int32 id = 1;
