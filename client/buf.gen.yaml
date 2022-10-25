@@ -4,7 +4,7 @@ managed:
 plugins:
   - name: js
     out: src/genproto
-    opt: import_style=commonjs
+    opt: import_style=commonjs,binary
   - name: ts
     out: src/genproto
     opt: service=grpc-web
